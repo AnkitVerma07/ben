@@ -1,6 +1,6 @@
 {
   "rethinkdb": {
-    "host": "localhost",
+    "host": "10.128.0.3",
     "port": 28015,
     "db": "dan"
   }

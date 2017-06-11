@@ -18,7 +18,7 @@ const User = thinky.createModel('users', {
     aboutMe: type.string(),
     gender: type.boolean(),   //1 is male, 0 is  female
     email: type.string().email(),
-    type: type.number().default(1),
+    type: type.string(),
     hashedPassword: type.string(),
     age: type.number(),
     birthdate: type.date(),

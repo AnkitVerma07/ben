@@ -9,6 +9,7 @@ const UserDAO = function(RethinkSurveyDAO) {
     self.insertSurvey = RethinkSurveyDAO.insertSurvey;
     self.getSurveyById = RethinkSurveyDAO.getSurveyById;
     self.insertSurveyTaken = RethinkSurveyDAO.insertSurveyTaken;
+    self.getQuestionByText = RethinkSurveyDAO.getQuestionByText;
 
     return self;
 };

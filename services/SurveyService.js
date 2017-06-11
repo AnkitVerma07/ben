@@ -73,15 +73,32 @@ const Service = function(SurveyDAO) {
 
     self.addNewSurveyTaken = (user_id, survey_id, time_taken, answers) => {
         const insertObj = {
-            user_id: user_id,
+            user_id: "4f36bcf6-a62d-4c89-bd86-3483d3760a6a" ,
             survey_id: survey_id,
             time_taken: time_taken
         };
         let answerArray = answers.map( (answer) => {
-            return ({
-                text: answer.text,
-                question_id: question.id
-            });
+            if(answer.i === '0'){
+               return SurveyDAO.getQuestionByText('What is your location?').then( (questions) => {
+                   return ({
+                       text: answer.s,
+                       question_id: questions[0].id
+                   });
+                    });
+            }
+            if(answer.i === '1'){
+                return SurveyDAO.getQuestionByText('What country/city?').then( (questions) => {
+                    return ({
+                        text: answer.s,
+                        question_id: questions[0].id
+                    });
+                });
+            }else {
+                return ({
+                    text: answer.s,
+                    question_id: answer.i
+                });
+            }
         });
         insertObj.answers = answerArray;
         return SurveyDAO.insertSurveyTaken(insertObj);

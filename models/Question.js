@@ -27,6 +27,7 @@ Question.ensureIndex('type');
 Question.ensureIndex('cluster');
 Question.ensureIndex('charge');
 Question.ensureIndex('order');
+Question.ensureIndex('question');
 
 
 

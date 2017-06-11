@@ -18,6 +18,10 @@ const RethinkSurveyDAO = function() {
         return models.Survey(surveyData).saveAll();
     };
 
+    self.getQuestionByText = (text) => {
+        return models.Survey.getAll(text, {index: 'question'}).run();
+    };
+
     self.getSurveyById = (surveyId) => {
         return models.Survey
             .get(surveyId)

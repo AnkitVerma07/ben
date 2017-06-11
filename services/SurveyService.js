@@ -73,7 +73,7 @@ const Service = function(SurveyDAO) {
 
     self.addNewSurveyTaken = (user_id, survey_id, time_taken, answers) => {
         const insertObj = {
-            user_id: "4f36bcf6-a62d-4c89-bd86-3483d3760a6a" ,
+            user_id: "09431a8d-a42c-4d9c-9e3e-2bc73fa5237b" ,
             survey_id: survey_id,
             time_taken: time_taken
         };

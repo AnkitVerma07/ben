@@ -17,11 +17,17 @@ const Question = thinky.createModel('questions', {
     cluster: type.string(),
     charge: type.number(),
     choices: type.array(),
-    survey_id: type.string()
+    survey_id: type.string(),
+    order: type.number()
 });
 
 // Setup Indexes
 Question.ensureIndex('title');
+Question.ensureIndex('type');
+Question.ensureIndex('cluster');
+Question.ensureIndex('charge');
+Question.ensureIndex('order');
+
 
 
 

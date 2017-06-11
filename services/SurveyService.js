@@ -12,7 +12,42 @@ const Service = function(SurveyDAO) {
 
     const self = this;
 
-    self.fetchSurveyById = SurveyDAO.getSurveyById;
+    self.fetchSurveyById = (surveyId) => {
+        return SurveyDAO.getSurveyById(surveyId);
+       //      .then( (survey) => {
+       //            const FiveStarClusters = ['careerProgression', 'resourcesNtraining ', 'resourcesNtraining', 'team', 'culture', 'ethicsNvaluesNdiversity', 'recognitionNsenseOfInfluence', 'communication', 'tenure', 'clarity', 'work', 'process', 'organization', 'department', 'job', 'rapport', 'affect ','expectations ', 'expectations', 'overall'];
+       //          const multipleChoiceCluster = ['affect ','expectations ', 'expectations', 'overall', 'careerProgression', 'resourcesNtraining ', 'resourcesNtraining', 'team', 'culture', 'ethicsNvaluesNdiversity', 'recognitionNsenseOfInfluence', 'communication', 'tenure', 'clarity', 'work', 'process', 'organization', 'department', 'job', 'rapport' ];
+       //
+       //          const types =
+       //          [ '5star',
+       //              'NPS',
+       //              'dropdown',
+       //              'dropdownWInput',
+       //              'multipleChoice',
+       //              'text' ];
+       //          const questionsByClusters = types.map(type => {
+       //              if(type === '5star'){
+       //                  return survey.survey_questions.filter(question => question.type === type).sort((a,b) => {
+       //                      return FiveStarClusters.indexOf(a.cluster) - FiveStarClusters.indexOf(b.cluster);
+       //                  })
+       //              }
+       //              if(type === 'multipleChoice'){
+       //                  return survey.survey_questions.filter(question => question.type === type).sort((a,b) => {
+       //                      return multipleChoiceCluster.indexOf(a.cluster) - multipleChoiceCluster.indexOf(b.cluster);
+       //                  })
+       //              }
+       //
+       //          });
+       //          const endClusters = ['demographic', 'NPS'];
+       //          const demoNPS = endClusters.map(cluster => {
+       //              return survey.survey_questions.filter(question => question.cluster === cluster);
+       //          });
+       //          questionsByClusters.unshift(...demoNPS);
+       //          survey.survey_questions = questionsByClusters;
+       //          return survey;
+       //
+       // });
+    };
 
     self.addNewSurvey = (title, description, source, time_limit, expected_time, questionsList) => {
         const insertObj = {
@@ -28,7 +63,8 @@ const Service = function(SurveyDAO) {
                 type: question.type,
                 cluster: question.cluster,
                 charge: question.charge,
-                choices: question.choices
+                choices: question.choices,
+                order: question.order
             });
         });
         insertObj.survey_questions = questionArray;

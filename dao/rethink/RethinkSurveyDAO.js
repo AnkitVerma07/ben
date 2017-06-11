@@ -21,8 +21,13 @@ const RethinkSurveyDAO = function() {
     self.getSurveyById = (surveyId) => {
         return models.Survey
             .get(surveyId)
-            .getJoin({ survey_questions : true })
-            .catch(thinky.Errors.DocumentNotFound, (err) => Promise.resolve('User not found by given id.'));
+            .getJoin({ survey_questions : {
+                _apply: function(sequence) {
+                    return sequence.orderBy("order")
+                }
+            }
+            })
+            .catch(thinky.Errors.DocumentNotFound, (err) => Promise.resolve('Survey Id provided not found.'));
     };
 
     self.insertSurveyTaken = (surveyTakenData) => {
